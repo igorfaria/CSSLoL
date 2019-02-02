@@ -1,8 +1,8 @@
-# CSSLoL :tophat:
+#  :zap::zap::zap:  CSSLoL  :zap::zap::zap:
 
 An standalone CSS optimizer in PHP.
 
-# Optimize
+## Optimize
   - Remove zeros when not needed
   - rgb to hex
   - abbreviation for hex (*#ffcc00* -> *#fc0*) 
@@ -10,17 +10,17 @@ An standalone CSS optimizer in PHP.
 - Support to media queries
 - Support to animations
 
-# Minify
+## Minify
 Yeah it does. Remove whitespaces, tabs, comments and those things.
 
-# Configs
+## Configs
 - **Variables**: replace variables to values
 - **Overwrite**: verify if already have that property defined to that same selector and replace it, to be used in some specifics cases like the one that make me do this  :D 
 - **Auto Prefixer**: add prefixes automatically if not yet defined to specified properties that you define 
 
 
 
-# Public Methods
+## Public Methods
 - **append(*$array* or *$string*)** - To add some css rules
 - **load('*string with local path or remote url*')** - To load some css file local or remote
 - **get(*'array'* or *'string'*)** - to get the array of parsed css to change the data structury 
