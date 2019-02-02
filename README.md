@@ -1,6 +1,6 @@
 # CSSLoL
 
-An standaloneCSS optimizer in PHP.
+An standalone CSS optimizer in PHP.
 
 # Optimize
   - Remove zeros when not needed
