@@ -69,7 +69,7 @@ class CSSLoL {
         // If it isn't an string...
         if(!is_string($css_text)) return false;
         
-        $re_media = "/(@\.+[^{]+)\{([\s\S]+?})\s*}/";
+        $re_media = "/(@\w+[^{]+)\{([\s\S]+?})\s*}/";
         preg_match_all($re_media, $css_text, $matches_media);
 
         $count_replaces = 0;
@@ -94,7 +94,11 @@ class CSSLoL {
             foreach($rules_x as $r){
                 if(trim($r)!=""){
                     $s = explode(":", $r);
-                    $rules_a[trim($s[0])] = trim($s[1]);
+
+                    $propertie = trim($s[0]);
+                    $value = $this->optimize_value(trim($s[1]));
+
+                    $rules_a[$propertie] = $value;
                 }
             }
 
@@ -116,7 +120,7 @@ class CSSLoL {
         return $return;
     }
 
-    public function replaceMedias($pattern, $text) {
+    private function replaceMedias($pattern, $text) {
         $this->_countMedias = 0;
         return preg_replace_callback($pattern, array($this, '_callbackMedias'), $text);
     }
@@ -124,6 +128,15 @@ class CSSLoL {
         return '@media-' . $this->_countMedias++ . '{}';
     }
 
+    private function optimize_value($value){
+        // Remove zeros when not needed
+        $value = preg_replace('/\s+0\./', ' .', $value);
+
+        // Replace 0px to 0
+        $value = preg_replace('/\s+0px/', ' 0', $value);
+
+        return $value;
+    }
 
     public function append($css_input){
 

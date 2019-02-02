@@ -13,8 +13,8 @@ $CSS1 = <<<CSS1
     }
     div.animated{animation: example linear 0.3s;} 
     @media all and (max-width: 767px) and (min-width: 0) {
-        body {padding: 10px;}
-        div.animated{animation:none}
+        body {padding: 10px; border: solid 10px red;}
+        div.animated{animation:none; border:solid 0px red;}
     }
     img {max-width: 100%}
     @media print {
