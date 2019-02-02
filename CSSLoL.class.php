@@ -145,25 +145,34 @@ class CSSLoL {
             }
         }
         
+        if(preg_match_all('/^#(?>[[:xdigit:]]{3}){1,2}$/', $value, $hex_colors)){
+            foreach($hex_colors[0] as $hex_color){
+                $value = str_replace($hex_color, $this->compress_hex($hex_color), $value);   
+            }
+        }
 
         return $value;
     }
 
     private function rgb_to_hex($R, $G, $B){
         $R = dechex($R);
-      
-        if (strlen($R)<2)
-        $R = '0'.$R;
+        if (strlen($R)<2) $R = '0'.$R;
 
         $G = dechex($G);
-        if (strlen($G)<2)
-        $G = '0'.$G;
+        if (strlen($G)<2) $G = '0'.$G;
 
         $B = dechex($B);
-        if (strlen($B)<2)
-        $B = '0'.$B;
+        if (strlen($B)<2) $B = '0'.$B;
 
         return '#' . $R . $G . $B;
+    }
+
+    private function compress_hex($original){
+        if ($original[1] == $original[2]
+        && $original[3] == $original[4]
+        && $original[5] == $original[6]) {
+          return "#" . $original[1] . $original[3] . $original[5];
+        } else return $original;
     }
 
     public function append($css_input){

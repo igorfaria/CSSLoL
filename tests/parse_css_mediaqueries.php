@@ -31,7 +31,7 @@ $CSS1 = <<<CSS1
         0%   {background-color: red;}
         25%  {background-color: yellow;}
         50%  {background-color: blue;}
-        100% {background-color: green;}
+        100% {background-color: #ffffff;}
       } 
       
 CSS1;

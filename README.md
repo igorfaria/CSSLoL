@@ -5,9 +5,9 @@ An standalone CSS optimizer in PHP.
 <br>
 
 ## Optimize
-  - [ ] Remove zeros when not needed
-  - [ ] rgb to hex
-  - [ ] abbreviation for hex (*#ffcc00* -> *#fc0*) 
+  - [x] Remove zeros when not needed
+  - [x] rgb to hex
+  - [x] abbreviation for hex (*#ffcc00* -> *#fc0*) 
   - [ ] add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
 - [x] Support to media queries
 - [x] Support to animations
