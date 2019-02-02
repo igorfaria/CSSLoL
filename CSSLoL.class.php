@@ -135,7 +135,35 @@ class CSSLoL {
         // Replace 0px to 0
         $value = preg_replace('/\s+0px/', ' 0', $value);
 
+        // Rgb to Hex
+        if(strpos($value,'rgb(') !== false){
+            preg_match_all('/rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/', $value, $rgb_colors);
+            if(count($rgb_colors) == 4){
+                $rgb_color = $rgb_colors[0];
+                $hex_color = $this->rgb_to_hex($rgb_colors[1][0],$rgb_colors[2][0],$rgb_colors[3][0]);
+                $value = str_replace($rgb_color, $hex_color, $value);
+            }
+        }
+        
+
         return $value;
+    }
+
+    private function rgb_to_hex($R, $G, $B){
+        $R = dechex($R);
+      
+        if (strlen($R)<2)
+        $R = '0'.$R;
+
+        $G = dechex($G);
+        if (strlen($G)<2)
+        $G = '0'.$G;
+
+        $B = dechex($B);
+        if (strlen($B)<2)
+        $B = '0'.$B;
+
+        return '#' . $R . $G . $B;
     }
 
     public function append($css_input){
