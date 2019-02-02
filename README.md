@@ -1,4 +1,4 @@
-# CSSLoL :+1:
+# CSSLoL :tophat:
 
 An standalone CSS optimizer in PHP.
 
@@ -14,9 +14,9 @@ An standalone CSS optimizer in PHP.
 Yeah it does. Remove whitespaces, tabs, comments and those things.
 
 # Configs
-- **Variables**  - replace variables to values
-- **Overwrite** - verify if already have that property defined to that same selector and replace it, to be used in some specifics cases like the one that make me do this  :D 
-- **Auto Prefixer** - add prefixes automatically if not yet defined to specified properties that you define 
+- **Variables**: replace variables to values
+- **Overwrite**: verify if already have that property defined to that same selector and replace it, to be used in some specifics cases like the one that make me do this  :D 
+- **Auto Prefixer**: add prefixes automatically if not yet defined to specified properties that you define 
 
 
 
