@@ -14,6 +14,8 @@ class CSSLoL {
     */
     private $config = array();
 
+    private $_countMedias = 0;
+
     public function __construct($config = null)
     {   
         // Set default configs or overwrite with passed by the user :D
@@ -33,7 +35,7 @@ class CSSLoL {
                 # http://shouldiprefix.com
                 'prefixes' => array(
                         '-webkit-' => array(
-                            'animation', 'background-clip', 'box-reflect', 'filter', 'flex', 'box-flex',
+                            'animation', 'animation-*', 'background-clip', 'box-reflect', 'filter', 'flex', 'box-flex',
                             'font-feature-settings','hyphens','mask-image','column-count', 'column-gap', 
                             'column-rule','flow-from','flow-into','transform','appearance'
                         ), 
@@ -67,9 +69,15 @@ class CSSLoL {
         // If it isn't an string...
         if(!is_string($css_text)) return false;
         
+        $re_media = "/(@\.+[^{]+)\{([\s\S]+?})\s*}/";
+        preg_match_all($re_media, $css_text, $matches_media);
+
+        $count_replaces = 0;
+        $css_text_aux = $this->replaceMedias($re_media, $css_text);
+        
         # Initial Source: https://stackoverflow.com/questions/33547792/php-css-from-string-to-array
-        $re = "/(.+)\{([^\}]*)\}/";
-        preg_match_all($re, $css_text, $matches);
+        $re_css = "/(.+)\{([^\}]*)\}/";
+        preg_match_all($re_css, $css_text_aux, $matches);
 
         //Create an array to hold the returned values
         $return = array();
@@ -90,13 +98,32 @@ class CSSLoL {
                 }
             }
 
+            // Media queries
+            if(preg_match('/\@media-(\d+)/',$name, $media_query)) {
+                if(isset($media_query[1]) AND isset($matches_media[0][$media_query[1]])){
+                    $media_query_name = $matches_media[1][$media_query[1]];
+                    $name = trim($media_query_name);
+                    $media_query_css = $matches_media[2][$media_query[1]];
+                    $rules_a = $this->parse($media_query_css); 
+                } 
+            }
+
             //Add the name and its values to the array
-            $return[$name] = $rules_a;
+            $return[][$name] = $rules_a;
         }
 
         //Return the array
         return $return;
     }
+
+    public function replaceMedias($pattern, $text) {
+        $this->_countMedias = 0;
+        return preg_replace_callback($pattern, array($this, '_callbackMedias'), $text);
+    }
+    public function _callbackMedias($matches) {
+        return '@media-' . $this->_countMedias++ . '{}';
+    }
+
 
     public function append($css_input){
 
