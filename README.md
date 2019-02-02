@@ -2,7 +2,7 @@
 
 CSS optimizer in PHP.
 
-# - Optimize
+# Optimize
   - Remove zeros when not needed
   - rgb to hex
   - abbreviation for hex (#ffcc00 -> #fc0) 
@@ -10,14 +10,14 @@ CSS optimizer in PHP.
 - Support to media queries
 - Support to animations
 
-# - Minify
+# Minify
 Yeah it does.
 Remove whitespaces, tabs, comments and those things.
 
 # Configs
 -	Variables  - replace variables to values
 -	Overwrite - verify if already have that property defined to that same selector and replace it, to be used in some specifics cases like the one that make me do this  :D 
-- Add Prefixes - add prefixes automatically if not yet defined to specified properties that you define 
+- Auto Prefixer - add prefixes automatically if not yet defined to specified properties that you define 
 
 
 
