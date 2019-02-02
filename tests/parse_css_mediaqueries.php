@@ -11,6 +11,7 @@ $CSS1 = <<<CSS1
         margin: 0;
         padding: 0px;
     }
+    div.animated{animation: example linear 0.3s;} 
     @media all and (max-width: 767px) and (min-width: 0) {
         body {padding: 10px;}
         div.animated{animation:none}
@@ -21,6 +22,17 @@ $CSS1 = <<<CSS1
             background: white;
         }
     }
+    @keyframes example {
+        from {background-color: red;}
+        to {background-color: yellow;}
+      }
+    @keyframes example2 {
+        0%   {background-color: red;}
+        25%  {background-color: yellow;}
+        50%  {background-color: blue;}
+        100% {background-color: green;}
+      }
+      
 CSS1;
 
 $CSSLoL->set($CSS1);
