@@ -26,3 +26,4 @@ Yeah it does. Remove whitespaces, tabs, comments and those things.
 - get('array' or 'string') - to get the array of parsed css to change the data structury 
 - save('name.css','path/css',true) - Save the final css to some final file (minified or not)
 - set($array or $string) - to set the array of parsed css or in text, it will not append, it will replace the actual data
+ 
