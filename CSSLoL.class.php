@@ -135,7 +135,7 @@ class CSSLoL {
 
     public function get($format='array'){
         // It its to be returned in text...
-        if(strtolower($format) == 'text'){
+        if(strtolower($format) == 'string'){
             return $this->toString();
         }
         // Just return and expose the css parsed in an array
@@ -162,9 +162,9 @@ class CSSLoL {
         return false;
     }
 
-    public function save($name,$path=''){
+    public function save($name,$path='',$minify=true){
         // Try to get css in text
-        $css_text = $this->toString();
+        $css_text = $this->toString((($minify)?true:false));
         if(is_string($css_text) and !empty($css_text)){
             $final_path = $name;
             // Verify if there is an path and if it exists
@@ -182,15 +182,24 @@ class CSSLoL {
         return false;
     }
 
-    private function toString(){
+    private function toString($minify=true){
         $css_text = "";
+        $ident_space = '  ';
         foreach($this->css as $selector=>$prop_and_value){
             if(!is_array($prop_and_value)) continue;
-            $css_text .= $selector.'{';
-            foreach($prop_and_value as $prop=>$value){
-                $css_text .= "{$prop}:{$value};";
+            if($minify){
+                $css_text .= $selector.'{';
+                    foreach($prop_and_value as $prop=>$value){
+                        $css_text .= "{$prop}:{$value};";
+                    }
+                    $css_text .= '}';
+            } else {
+                    $css_text .= $selector.'{\n';
+                    foreach($prop_and_value as $prop=>$value){
+                        $css_text .= $ident_space . "{$prop}:{$value};" . '\n';
+                    }
+                    $css_text .= '}\n';
             }
-            $css_text .= '}';
         }
         return $css_text;
     }

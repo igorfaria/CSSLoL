@@ -1,6 +1,6 @@
 # CSSLoL
 
-An standaloneCSS optimizer in PHP.
+An standalone CSS optimizer in PHP.
 
 # Optimize
   - Remove zeros when not needed
@@ -21,8 +21,8 @@ Yeah it does. Remove whitespaces, tabs, comments and those things.
 
 
 # Public Methods
-- Append - To add some css in text
--	Load (local and remote) - To load some css file local or remote
-- Get (array and text) - to get the array of parsed css to change the data structury 
--	Save - Save the final css to some final file (minified or beautified)
-- Set (array and text) - to set the array of parsed css or in text, it will not append, it will replace the actual data
+- append($array or $string) - To add some css rules
+- load('string with local path or remote url') - To load some css file local or remote
+- get('array' or 'string') - to get the array of parsed css to change the data structury 
+- save('name.css','path/css',true) - Save the final css to some final file (minified or not)
+- set($array or $string) - to set the array of parsed css or in text, it will not append, it will replace the actual data
