@@ -13,7 +13,7 @@ An standalone CSS optimizer in PHP.
 - [x] Support to animations
 <br><br>
 ## Minify
-- [ ] Yeah it does. Remove whitespaces, tabs, comments and those things.
+- [x] Yeah it does, by nature. Remove whitespaces, tabs, comments and those things.
 <br><br>
 ## Configs
 - [ ] **Variables**: replace variables to values
