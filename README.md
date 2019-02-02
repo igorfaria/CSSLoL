@@ -1,18 +1,17 @@
 # CSSLoL
 
-CSS optimizer in PHP.
+An standaloneCSS optimizer in PHP.
 
 # Optimize
   - Remove zeros when not needed
   - rgb to hex
   - abbreviation for hex (#ffcc00 -> #fc0) 
-  - add prefixes
+  - add prefixes (-webkit-, -moz-, -ms- and -o-)
 - Support to media queries
 - Support to animations
 
 # Minify
-Yeah it does.
-Remove whitespaces, tabs, comments and those things.
+Yeah it does. Remove whitespaces, tabs, comments and those things.
 
 # Configs
 -	Variables  - replace variables to values
