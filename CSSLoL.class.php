@@ -134,6 +134,7 @@ class CSSLoL {
 
         // Replace 0px to 0
         $value = preg_replace('/\s+0px/', ' 0', $value);
+        if(strtolower($value) == '0px') $value = '0';
 
         // Rgb to Hex
         if(strpos($value,'rgb(') !== false){
@@ -145,7 +146,7 @@ class CSSLoL {
             }
         }
         
-        if(preg_match_all('/^#(?>[[:xdigit:]]{3}){1,2}$/', $value, $hex_colors)){
+        if(preg_match_all('/#(?>[[:xdigit:]]{3}){1,2}$/', $value, $hex_colors)){
             foreach($hex_colors[0] as $hex_color){
                 $value = str_replace($hex_color, $this->compress_hex($hex_color), $value);   
             }
@@ -210,10 +211,10 @@ class CSSLoL {
         return false;
     }
 
-    public function get($format='array'){
+    public function get($format='array',$minify=true){
         // It its to be returned in text...
         if(strtolower($format) == 'string'){
-            return $this->toString();
+            return $this->toString(($minify)?true:false);
         }
         // Just return and expose the css parsed in an array
         return $this->css;
@@ -261,23 +262,69 @@ class CSSLoL {
 
     private function toString($minify=true){
         $css_text = "";
-        $ident_space = '  ';
-        foreach($this->css as $selector=>$prop_and_value){
-            if(!is_array($prop_and_value)) continue;
-            if($minify){
-                $css_text .= $selector.'{';
-                    foreach($prop_and_value as $prop=>$value){
-                        $css_text .= "{$prop}:{$value};";
+        $ident_space = "    ";
+        $break_line = PHP_EOL;
+        // Iterates over the array with rules like a crazy
+        foreach($this->css as $rule){
+            foreach($rule as $selector1=>$properties1){
+              if(!is_array($properties1)) continue;
+
+              $css_text .= $selector1 . ' {' . $break_line;
+
+              // Media Queries
+              if(strpos($selector1,'@media') !== FALSE){
+                foreach($properties1 as $media_rule){
+                    if(!is_array($media_rule)) continue;
+                    foreach($media_rule as $selector2=>$properties2){
+                        $css_text .= $ident_space . $selector2 . ' {' . $break_line;
+                        foreach($properties2 as $prop=>$value){
+                            $css_text .= $ident_space . $ident_space . $prop . ': ' . $value . ';' . $break_line; 
+                        }
+                        $css_text .= $ident_space . '}' . $break_line;
                     }
-                    $css_text .= '}';
-            } else {
-                    $css_text .= $selector.'{\n';
-                    foreach($prop_and_value as $prop=>$value){
-                        $css_text .= $ident_space . "{$prop}:{$value};" . '\n';
-                    }
-                    $css_text .= '}\n';
+                }                
+              } else {
+                  // :D 
+                  foreach($properties1 as $prop=>$value){
+                      if(is_array($value)){ 
+                          // To support to @keyframes
+                        foreach($value as $keyframes=>$props2){
+                            $css_text .=  $ident_space . $keyframes . ' {' . $break_line;
+                            foreach($props2 as $selector2=>$properties2){
+                                    if(is_array($properties2)){
+                                        $css_text .= $ident_space . $ident_space . $selector2 . ' {' . $break_line;
+                                        foreach($properties2 as $prop2=>$value2){
+                                            $css_text .= $ident_space . $ident_space . $ident_space . $prop2 . ': ' . $value2 . ';' . $break_line; 
+                                        }
+                                        $css_text .= $ident_space . $ident_space . '}' . $break_line;
+                                    } else {
+                                        $css_text .= $ident_space . $ident_space . $selector2 . ': ' . $properties2 . ';' . $break_line; 
+                                    }
+                            }
+                            $css_text .= $ident_space . '}' . $break_line;
+                        }
+                      } else {
+                          // Normal css :)
+                          $css_text .= $ident_space . $prop . ': ' . $value . ';' . $break_line; 
+                      }
+                  }
+              }
+
+              $css_text .= '}' . $break_line;
             }
         }
+
+        if($minify) $css_text = $this->minify($css_text);
+
         return $css_text;
+    }
+
+    private function minify($css){
+        $from=array('@\\s*/\\*.*\\*/\\s*@sU', '/\\s{2,}/');
+        $to=array('', ' ');
+        $css=preg_replace($from,$to,$css); 
+        $css=preg_replace('@\s*([\:;,."\'{}()])\s*@',"$1",$css);  
+        $css=preg_replace('@;}@','}',$css);
+        return $css;
     }
 }
