@@ -9,8 +9,8 @@ An standalone CSS optimizer in PHP.
   - [ ] rgb to hex
   - [ ] abbreviation for hex (*#ffcc00* -> *#fc0*) 
   - [ ] add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
-- [ ] Support to media queries
-- [ ] Support to animations
+- [x] Support to media queries
+- [x] Support to animations
 <br><br>
 ## Minify
 - [ ] Yeah it does. Remove whitespaces, tabs, comments and those things.
