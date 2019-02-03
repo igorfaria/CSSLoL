@@ -148,7 +148,7 @@ class CSSLoL {
         $value = preg_replace('/\s+0px/', ' 0', $value);
         if(strtolower($value) == '0px') $value = '0';
 
-        // Rgb to Hex
+        // RGB to Hex
         if(strpos($value,'rgb(') !== false){
             preg_match_all('/rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/', $value, $rgb_colors);
             if(count($rgb_colors) == 4){
@@ -158,6 +158,7 @@ class CSSLoL {
             }
         }
         
+        // Compress hex colors => #ffffff -> #fff
         if(preg_match_all('/#(?>[[:xdigit:]]{3}){1,2}$/', $value, $hex_colors)){
             foreach($hex_colors[0] as $hex_color){
                 $value = str_replace($hex_color, $this->compress_hex($hex_color), $value);   
@@ -175,10 +176,8 @@ class CSSLoL {
     }
 
     private function compress_hex($original){
-        if (strlen($original) == 6
-        && $original[1] == $original[2]
-        && $original[3] == $original[4]
-        && $original[5] == $original[6]) {
+        if (strlen($original) == 6 && $original[1] == $original[2]
+        && $original[3] == $original[4]  && $original[5] == $original[6]) {
           return "#" . $original[1] . $original[3] . $original[5];
         } else return $original;
     }
