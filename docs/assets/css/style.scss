@@ -32,6 +32,10 @@ section {
   width: 100%; 
   margin-top: 70px;
 }
+section:nth-of-type(even){
+   background: #FFF;
+}
+
 nav {
   text-align: center;
   left: 0;
