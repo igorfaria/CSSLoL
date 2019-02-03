@@ -5,10 +5,10 @@ An standalone CSS optimizer in PHP.
 <br>
 
 ## Optimize
-  - [x] Remove zeros when it is not needed (0.2s -> .2s)
-  - [x] rgb to hex (rgb(255,255,255) -> #fff)
-  - [x] abbreviation for hex (*#ffcc00* -> *#fc0*) 
-  - [x] add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
+  - [x] Remove zeros when it is not needed (0.3s -> .3s)
+  - [x] Colors rgb to hex (*rgb(255,255,255)* -> *#fff*)
+  - [x] Abbreviation for hex (*#ffcc00* -> *#fc0*) 
+  - [x] Add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
 - [x] Support to media queries
 - [x] Support to animations (*-webkit-*)
 <br><br>
