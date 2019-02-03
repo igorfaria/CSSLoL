@@ -1,6 +1,6 @@
 theme: jekyll-theme-cayman
-title: An standalone CSS optimizer in PHP
-description: Optimize your CSS file with PHP
+title: CSSLoL
+description: An standalone CSS optimizer in PHP
 logo: /assets/img/logo.png
 show_downloads: true
 google_analytics: UA-133657942-1
