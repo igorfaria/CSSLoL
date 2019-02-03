@@ -11,8 +11,8 @@ An standalone CSS optimizer in PHP.
   - [x] Add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
   - [ ] Replace multiples related properties with the shorthanded version
   - [ ] Remove duplicated properties with the same selector
-- [x] Support to media queries
-- [x] Support to animations (*-webkit-*)
+  - [x] Support to media queries
+  - [x] Support to animations (*-webkit-*)
 <br><br>
 ## Minify
 - [x] Yeah it does, by nature. Remove whitespaces, tabs, comments and those things.
