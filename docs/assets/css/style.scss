@@ -92,11 +92,13 @@ nav ul li a:hover {
   text-shadow: none;
 }
 #banner ul li a.button {
-    padding: 10px 48px;
-    background-color: #1cad23;
+  padding: 10px 48px;
+  background-color: #1cad23;
+  color: #FFF;
 }
 #banner .button:hover {
   background: #cccccc;
+  color: #333;
 }
 #banner .button:hover strong {
   color: #333;
