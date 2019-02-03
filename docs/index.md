@@ -1,8 +1,8 @@
 <p align='center'>
-<a href='https://igorfaria.github.io/CSSLoL/'><img src='https://igorfaria.github.io/CSSLoL/assets/img/logo.png' /></a>
-</p>
-
+<img src='https://igorfaria.github.io/CSSLoL/assets/img/logo.png' width='500px' />
+    <br>
 This is a *CSS optimizer* that parse CSS code into an set of associatives arrays, allowing to manipulate the CSS with PHP and execute the magic, outputing as a text or into a file.
+</p>
 
 ### Optimize
 -  [x] Remove zeros when it is not needed (0.3s -> .3s)
@@ -109,7 +109,7 @@ echo $CSS->get();
 
 Will output: 
 ```
-array(4) {
+array(1) {
   [0]=>
   array(1) {
     ["body"]=>
