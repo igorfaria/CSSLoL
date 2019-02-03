@@ -4,9 +4,24 @@
 @import "{{ site.theme }}";
 
 header {
-  background: #484848;
+  display: none;
 }
 #banner {
   background: #404040;
   border-color: #404040;
+  width: 100%;
+  left: 0;
+  right: 0;
+  padding: 0;
+}
+.wrapper {
+  width: 100%;
+  max-width: 1600px;
+}
+nav {
+  top: 60px;
+  text-align: center;
+}
+nav ul li {
+  display: inline-block;
 }
