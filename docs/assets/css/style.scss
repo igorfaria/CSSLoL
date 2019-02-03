@@ -108,9 +108,9 @@ nav ul li.active a {
 @media all and (max-width: 768px) and (min-width: 0){
   #banner, nav {display: block !important;}
   #banner .downloads span { display: none; }
-  #banner .downloads {margin-right: 15px;}
-  #banner ul li a.button {padding: 10px 25px;margin-left: 15px;}
-  #banner .fork {left: 120px;}
+  #banner .downloads {margin-right: 10px;}
+  #banner ul li a.button {font-size:12px;padding: 10px 16px;margin-left: 10px;margin-top:9px;}
+  #banner .fork {left: 110px;font-size:11px;}
   nav ul li:nth-of-type(2),
   nav ul li:nth-of-type(5),nav ul li:nth-of-type(6),
   nav ul li:nth-of-type(7),nav ul li:nth-of-type(9) { display: none ;}
