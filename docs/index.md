@@ -1,9 +1,3 @@
-<h1 align="center">CSSLoL</h1>
-<p align='center'>
-An standalone CSS optimizer in PHP.
- </p>
-<br>
-
 ## Optimize
   - Remove zeros when it is not needed (0.3s -> .3s)
   - Colors rgb to hex (*rgb(255,255,255)* -> *#fff*)
