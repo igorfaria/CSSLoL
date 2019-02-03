@@ -68,7 +68,6 @@ class CSSLoL {
         $re_media = "/(@\w+[^{]+)\{([\s\S]+?})\s*}/";
         preg_match_all($re_media, $css_text, $matches_media);
 
-        $count_replaces = 0;
         $css_text_aux = $this->replaceMedias($re_media, $css_text);
         
         # Initial Source: https://stackoverflow.com/questions/33547792/php-css-from-string-to-array
