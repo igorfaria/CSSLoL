@@ -1,6 +1,6 @@
-
-# CSSLoL - CSS optimizer in PHP
-An standalone CSS optimizer in PHP.
+<p align='center'>
+<a href='https://igorfaria.github.io/CSSLoL/'><img src='https://igorfaria.github.io/CSSLoL/assets/img/logo.png' /></a>
+</p>
 
 This is a *CSS optimizer* that parse CSS code into an set of associatives arrays, allowing to manipulate the CSS with PHP and execute the magic, outputing as a text or into a file.
 
@@ -22,7 +22,7 @@ This is a *CSS optimizer* that parse CSS code into an set of associatives arrays
 
 ## Installing
 ##### Prerequisites: PHP 5.4+
-Just download the file  <a href='https://raw.githubusercontent.com/igorfaria/CSSLoL/master/CSSLoL.class.php' target='_blank'>**CSSLoL.class.php**</a> and use it, there is no others external dependencies to the CSSLoL class.
+Just download the file <a href='https://raw.githubusercontent.com/igorfaria/CSSLoL/master/CSSLoL.class.php' target='_blank'>**CSSLoL.class.php**</a> and use it, there is no others external dependencies to the CSSLoL class.
 Of course you can download the folder /tests/ if you want some examples to how use and to test the funcionalities.
 
 
