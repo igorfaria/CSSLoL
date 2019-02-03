@@ -1,7 +1,7 @@
 <p align='center'>
 <img src='https://igorfaria.github.io/CSSLoL/assets/img/logo.png' width='500px' />
     <br>
-This is a *CSS optimizer* that parse CSS code into an set of associatives arrays, allowing to manipulate the CSS with PHP and execute the magic, outputing as a text or into a file.
+    This is a <strong>CSS optimizer</strong> that parse CSS code into an set of associatives arrays, allowing to manipulate the CSS with PHP and execute the magic, outputing as a text or into a file.
 </p>
 
 ### Optimize
