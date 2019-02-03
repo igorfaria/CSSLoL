@@ -1,0 +1,47 @@
+@keyframes MyAnimation {
+    0% { left: 0; }	
+   50% { left: 200px; }	
+  100% { left: 20px; }	
+}
+.example {
+    animation: MyAnimation 2s;
+}
+
+.example {
+    background-clip: text;
+}
+
+.example {
+    filter: grayscale(50%);
+}
+
+.example {
+    flex: 1;
+}
+
+.example {
+    font-feature-settings: "liga", "dlig";
+}
+
+.example {
+    word-break: break-all;
+    hyphens: auto; 
+}
+
+.example {
+    column-count: 2;
+    column-gap: 10px;
+    column-rule: 1px solid #000;
+}
+
+.example {
+    object-fit: fill;
+}
+
+.example {
+    transform: rotate(30deg);
+}
+
+.exemple {
+    appearance: none;
+}

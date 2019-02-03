@@ -30,26 +30,26 @@ class CSSLoL {
             // Overwrite - verify if already have that property defined to that same selector and replace it :D
             'overwrite' => false,
             // Auto Prefixes - add prefixes automatically if not yet defined to specified properties that you define
-            'autoprefixer' => array(
-                # just add prefixes to properties :x
-                # http://shouldiprefix.com
-                'prefixes' => array(
-                        '-webkit-' => array(
-                            'animation', 'animation-*', 'background-clip', 'box-reflect', 'filter', 'flex', 'box-flex',
-                            'font-feature-settings','hyphens','mask-image','column-count', 'column-gap', 
-                            'column-rule','flow-from','flow-into','transform','appearance'
-                        ), 
-                        '-moz-' => array(
-                            'font-feature-settings', 'hyphens','column-count','column-gap','column-rule','appearance'
-                        ), 
-                        '-ms-' => array(
-                            'word-break', 'hyphens','flow-from','flow-into','transform'
-                        ),
-                        '-o-' => array(
-                            'object-fit'
-                        ),
-                    ),
+            'autoprefixer' => true,
+            # just add prefixes to properties :x
+            # http://shouldiprefix.com
+            'prefixes' => array(
+                '-webkit-' => array(
+                    'animation', 'background-clip', 'box-reflect', 'filter', 'flex', 'box-flex',
+                    'font-feature-settings','hyphens','mask-image','column-count', 'column-gap', 
+                    'column-rule','flow-from','flow-into','transform','appearance'
+                ), 
+                '-moz-' => array(
+                    'font-feature-settings', 'hyphens','column-count','column-gap','column-rule','appearance'
+                ), 
+                '-ms-' => array(
+                    'word-break', 'hyphens','flow-from','flow-into','transform'
                 ),
+                '-o-' => array(
+                    'object-fit'
+                ),
+            ),
+             
         );
 
         // If $config is an array, overwrites the default value
@@ -94,11 +94,24 @@ class CSSLoL {
             foreach($rules_x as $r){
                 if(trim($r)!=""){
                     $s = explode(":", $r);
+                    if(empty($s[1])) continue;
 
                     $propertie = trim($s[0]);
                     $value = $this->optimize_value(trim($s[1]));
+                    
+                    // Autoprefixer :D
+                    if($this->config['autoprefixer']){
+                        if(is_array($this->config['prefixes'])){
+                            foreach($this->config['prefixes'] as $prefix=>$pre_prop){
+                                if(in_array($propertie, $pre_prop)){
+                                    $rules_a[$prefix . $propertie] = $value;
+                                }
+                            }
+                        }
+                    }
 
                     $rules_a[$propertie] = $value;
+
                 }
             }
 
@@ -109,6 +122,10 @@ class CSSLoL {
                     $name = trim($media_query_name);
                     $media_query_css = $matches_media[2][$media_query[1]];
                     $rules_a = $this->parse($media_query_css); 
+                    if($this->config['autoprefixer'] AND strpos($name,'@keyframes') !== false){
+                        $name_webkit = preg_replace('/@keyframes/','@-webkit-keyframes', $name);
+                        $return[][$name_webkit] = $rules_a;
+                    }
                 } 
             }
 
@@ -169,7 +186,9 @@ class CSSLoL {
     }
 
     private function compress_hex($original){
-        if ($original[1] == $original[2]
+        if (
+        strlen($original) == 6 and
+        $original[1] == $original[2]
         && $original[3] == $original[4]
         && $original[5] == $original[6]) {
           return "#" . $original[1] . $original[3] . $original[5];
@@ -209,7 +228,6 @@ class CSSLoL {
             // If it is successful in getting the content
             if($css_text and is_string($css_text)){
                 // Try to parse the content
-              
                 $css_parsed = $this->parse($css_text);
                 // If it is parsed into an array
                 if($css_parsed AND is_array($css_parsed)){
