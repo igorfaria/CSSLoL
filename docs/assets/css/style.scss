@@ -3,6 +3,13 @@
 
 @import "{{ site.theme }}";
 
+
+li input[type="checkbox"] {
+ margin-right: 6px;
+    position: relative;
+    top: 2px
+}
+
 code {
  font-family: monospace;
  font-size: 16px;
