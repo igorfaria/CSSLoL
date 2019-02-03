@@ -176,20 +176,29 @@ class CSSLoL {
         } else return $original;
     }
 
-    public function append($css_input){
+    public function append($css_input,$prepend=false){
 
         // If it is an string we parsed before append
-        if(is_string($css_array)) {
-            $css_array = $this->parse($css_array);
+        if(is_string($css_input)) {
+            $css_input = $this->parse($css_input);
         }
         
         // If already was an array or if it was parsed into one, it is appended to the end of the main css
-        if(is_array($css_array) AND count($css_array) > 0){
-            return array_push($this->css, $css_array);
+        if(is_array($css_input) AND count($css_input) > 0){
+            if($prepend) {
+                $this->css = array_merge($css_input,$this->css);
+            } else {
+                $this->css = array_merge($this->css, $css_input);
+            }
+            return true;
         }
 
         // In case something went wrong
         return false;
+    }
+
+    public function prepend($css_input){
+        return $this->append($css_input,true);
     }
 
     public function load($path_or_url){
@@ -200,6 +209,7 @@ class CSSLoL {
             // If it is successful in getting the content
             if($css_text and is_string($css_text)){
                 // Try to parse the content
+              
                 $css_parsed = $this->parse($css_text);
                 // If it is parsed into an array
                 if($css_parsed AND is_array($css_parsed)){
