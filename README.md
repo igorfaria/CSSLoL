@@ -21,7 +21,8 @@ An standalone CSS optimizer in PHP.
 - [x] **Auto Prefixer**: add prefixes automatically if not yet defined to specified properties that you define 
 <br><br>
 ## Public Methods
-- [x] **append(*$array* or *$string*)** - To add some css rules
+- [x] **append(*$array* or *$string*)** - To add some css rules to the end 
+- [x] **prepend(*$array* or *$string*)** - To add some css rules to the top
 - [x] **load('*string with local path or remote url*')** - To load some css file local or remote
 - [x] **get(*'array'* or *'string'*)** - to get the array of parsed css to change the data structury 
 - [x] **save(*'name.css','path/css',true*)** - Save the final css to some final file (minified or not)
