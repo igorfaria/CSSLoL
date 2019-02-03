@@ -5,7 +5,7 @@
 
 class CSSLoL {
     /*
-        CSS parsed in an associative array $css = ['selector' => ['prop' => 'value']];
+        CSS parsed in an associative array $css = [['selector' => ['prop' => 'value']]];
     */
     private $css = array();
 
@@ -13,8 +13,6 @@ class CSSLoL {
         Array with configurations
     */
     private $config = array();
-
-    private $_countMedias = 0;
 
     public function __construct($config = null)
     {   
@@ -91,47 +89,61 @@ class CSSLoL {
                     $s = explode(":", $r);
                     if(empty($s[1])) continue;
 
-                    $propertie = trim($s[0]);
+                    $property = trim($s[0]);
                     $value = $this->optimize_value(trim($s[1]));
                     
                     // Autoprefixer :D
                     if($this->config['autoprefixer']){
+                        // Check if is there is an array with prefixes
                         if(is_array($this->config['prefixes'])){
+                            // Iterates over 
                             foreach($this->config['prefixes'] as $prefix=>$pre_prop){
-                                if(in_array($propertie, $pre_prop)){
-                                    $rules_a[$prefix . $propertie] = $value;
+                                // If the property is defined in the array
+                                if(in_array($property, $pre_prop)){
+                                    // Add property with prefix to the rules
+                                    $rules_a[$prefix . $property] = $value;
                                 }
                             }
                         }
                     }
-
-                    $rules_a[$propertie] = $value;
-
+                    // Add property to the rules
+                    $rules_a[$property] = $value;
                 }
             }
 
             // Media queries
             if(preg_match('/\@media-(\d+)/',$name, $media_query)) {
+                // Check if there is the number that identify the media
                 if(isset($media_query[1]) AND isset($matches_media[0][$media_query[1]])){
+                    // @media print, @keyframes, @media all and (max-width: ...)
                     $media_query_name = $matches_media[1][$media_query[1]];
                     $name = trim($media_query_name);
+                    // CSS string related to the media
                     $media_query_css = $matches_media[2][$media_query[1]];
-                    $rules_a = $this->parse($media_query_css); 
-                    if($this->config['autoprefixer'] AND strpos($name,'@keyframes') !== false){
+                    // Parse the CSS string
+                    $rules_m = $this->parse($media_query_css); 
+                    // If autoprefixer is true, there is the -webkit- prefix and is @keyframes
+                    if($this->config['autoprefixer'] AND isset($this->config['autoprefixer']['prefixes']['-webkit-']) 
+                       AND strpos($name,'@keyframes') !== false){
+                        // Add the webkit prefix to @keyframes
                         $name_webkit = preg_replace('/@keyframes/i','@-webkit-keyframes', $name);
-                        $return[][$name_webkit] = $rules_a;
+                        // Append to the array
+                        $return[][$name_webkit] = $rules_m;
                     }
                 } 
             }
-
             //Add the name and its values to the array
              $return[][$name] = $rules_a;
         }
-        
-        //Return the array
+        //Return the array with rules
         return $return;
     }
 
+    /*
+        Int to count the @medias and @keyframes
+    */
+    private $_countMedias = 0;
+    
     private function replaceMedias($pattern, $text) {
         $this->_countMedias = 0;
         return preg_replace_callback($pattern, array($this, '_callbackMedias'), $text);
@@ -203,7 +215,7 @@ class CSSLoL {
         return false;
     }
 
-    public function prepend($css_input){
+    public function prepend($css_input){ // :P
         return $this->append($css_input,true);
     }
 
@@ -341,6 +353,7 @@ class CSSLoL {
         $to=array('', ' ');
         $css=preg_replace($from,$to,$css); 
         $css=preg_replace('@\s*([\:;,."\'{}()])\s*@',"$1",$css);  
+        // Remove last semicolon
         $css=preg_replace('@;}@','}',$css);
         return $css;
     }
