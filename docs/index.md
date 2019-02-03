@@ -1,3 +1,12 @@
+<style>
+    #banner {
+        background: #404040;
+        border-color: #404040;
+    }
+    header {
+        background: #585858;
+    }
+</style>
 <p align='center'>
 <img src='https://igorfaria.github.io/CSSLoL/assets/img/logo.png' width='500px' />
     <br>
