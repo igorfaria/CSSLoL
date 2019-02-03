@@ -8,7 +8,7 @@ An standalone CSS optimizer in PHP.
   - [x] Remove zeros when not needed
   - [x] rgb to hex
   - [x] abbreviation for hex (*#ffcc00* -> *#fc0*) 
-  - [ ] add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
+  - [x] add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
 - [x] Support to media queries
 - [x] Support to animations
 <br><br>
@@ -18,7 +18,7 @@ An standalone CSS optimizer in PHP.
 ## Configs
 - [ ] **Variables**: replace variables to values
 - [ ] **Overwrite**: verify if already have that property defined to that same selector and replace it, to be used in some specifics cases like the one that make me do this  :D 
-- [ ] **Auto Prefixer**: add prefixes automatically if not yet defined to specified properties that you define 
+- [x] **Auto Prefixer**: add prefixes automatically if not yet defined to specified properties that you define 
 <br><br>
 ## Public Methods
 - [x] **append(*$array* or *$string*)** - To add some css rules
