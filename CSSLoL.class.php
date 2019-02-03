@@ -25,10 +25,6 @@ class CSSLoL {
 
     private function set_config($config){
         $this->config = array(
-            // variables - replace variables to 
-            'variables' => true,
-            // Overwrite - verify if already have that property defined to that same selector and replace it :D
-            'overwrite' => false,
             // Auto Prefixes - add prefixes automatically if not yet defined to specified properties that you define
             'autoprefixer' => true,
             # just add prefixes to properties :x
@@ -123,16 +119,16 @@ class CSSLoL {
                     $media_query_css = $matches_media[2][$media_query[1]];
                     $rules_a = $this->parse($media_query_css); 
                     if($this->config['autoprefixer'] AND strpos($name,'@keyframes') !== false){
-                        $name_webkit = preg_replace('/@keyframes/','@-webkit-keyframes', $name);
+                        $name_webkit = preg_replace('/@keyframes/i','@-webkit-keyframes', $name);
                         $return[][$name_webkit] = $rules_a;
                     }
                 } 
             }
 
             //Add the name and its values to the array
-            $return[][$name] = $rules_a;
+             $return[][$name] = $rules_a;
         }
-
+        
         //Return the array
         return $return;
     }
@@ -304,6 +300,7 @@ class CSSLoL {
                 foreach($properties1 as $media_rule){
                     if(!is_array($media_rule)) continue;
                     foreach($media_rule as $selector2=>$properties2){
+                        if(!is_array($properties2)) continue;
                         $css_text .= $ident_space . $selector2 . ' {' . $break_line;
                         foreach($properties2 as $prop=>$value){
                             $css_text .= $ident_space . $ident_space . $prop . ': ' . $value . ';' . $break_line; 
@@ -317,6 +314,7 @@ class CSSLoL {
                       if(is_array($value)){ 
                           // To support to @keyframes
                         foreach($value as $keyframes=>$props2){
+                            if(!is_array($props2)) continue;
                             $css_text .=  $ident_space . $keyframes . ' {' . $break_line;
                             foreach($props2 as $selector2=>$properties2){
                                     if(is_array($properties2)){

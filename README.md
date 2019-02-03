@@ -5,19 +5,17 @@ An standalone CSS optimizer in PHP.
 <br>
 
 ## Optimize
-  - [x] Remove zeros when not needed
-  - [x] rgb to hex
+  - [x] Remove zeros when it is not needed (0.2s -> .2s)
+  - [x] rgb to hex (rgb(255,255,255) -> #fff)
   - [x] abbreviation for hex (*#ffcc00* -> *#fc0*) 
   - [x] add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
 - [x] Support to media queries
-- [x] Support to animations
+- [x] Support to animations (*-webkit-*)
 <br><br>
 ## Minify
 - [x] Yeah it does, by nature. Remove whitespaces, tabs, comments and those things.
 <br><br>
 ## Configs
-- [ ] **Variables**: replace variables to values
-- [ ] **Overwrite**: verify if already have that property defined to that same selector and replace it, to be used in some specifics cases like the one that make me do this  :D 
 - [x] **Auto Prefixer**: add prefixes automatically if not yet defined to specified properties that you define 
 <br><br>
 ## Public Methods
