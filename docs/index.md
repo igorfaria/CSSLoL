@@ -218,7 +218,7 @@ body{color:#333}
 ```php
 <?php
 // An array with configs
-$configs = array('autoprefixer',true); // The default value is already true
+$configs = array('autoprefixer' => true); // The default value is already true :D
 // Passed through constructor
 $CSSLoL = new CSSLoL($configs);
 $CSSLoL->load('.example{transform: rotate(30deg);}');

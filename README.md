@@ -1,9 +1,3 @@
-<h1 align="center">:zap::zap::zap:  CSSLoL  :zap::zap::zap: </h1>
-<p align='center'>
-An standalone CSS optimizer in PHP.
- </p>
-<br>
-
 
 # CSSLoL - CSS optimizer in PHP
 An standalone CSS optimizer in PHP.
@@ -224,7 +218,7 @@ body{color:#333}
 ```php
 <?php
 // An array with configs
-$configs = array('autoprefixer',true); // The default value is already true
+$configs = array('autoprefixer' => true); // The default value is already true :D
 // Passed through constructor
 $CSSLoL = new CSSLoL($configs);
 $CSSLoL->load('.example{transform: rotate(30deg);}');
