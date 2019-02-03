@@ -22,7 +22,7 @@ This is a *CSS optimizer* that parse CSS code into an set of associatives arrays
 
 ## Installing
 ##### Prerequisites: PHP 5.4+
-Just download the file **CSSLoL.class.php** and use it, there is no others external dependencies to the CSSLoL class.
+Just download the file <a href='https://raw.githubusercontent.com/igorfaria/CSSLoL/master/CSSLoL.class.php' target='_blank'>**CSSLoL.class.php**</a> and use it, there is no others external dependencies to the CSSLoL class.
 Of course you can download the folder /tests/ if you want some examples to how use and to test the funcionalities.
 
 
