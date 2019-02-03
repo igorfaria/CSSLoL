@@ -15,7 +15,7 @@ if(file_exists($css_test_file)){
 } 
 $CSSLoL = new CSSLoL();
 // Initial CSS
-$CSSLoL->set('body {margin:0}');
+$CSSLoL->set('body {color:#665544;}');
 // Append an string
 $CSSLoL->append('p {color:blue}');
 // Prepend an array
