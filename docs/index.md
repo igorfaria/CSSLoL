@@ -53,6 +53,7 @@ Will output:
 ```css
 body{color:#333}p{color:#222}
 ```
+<br><br>
 -  [x]  **prepend(*$array* or *$string*)** - To add some css rules to the beginning
 ```php
 <?php
@@ -68,16 +69,150 @@ Will output:
 ```css
 p{color:#222}body{color:#333}
 ```
-
+<br><br>
 -  [x]  **load('*string with local path or remote url*')** - To load some css file local or remote
+```php
+<?php
+$CSSLoL = new CSSLoL();
+// Load CSS from a file
+$CSSLoL->load('tests/example.css');
+echo $CSS->get('text');
+```
 
+Will output: 
+```css
+body{color:#333}
+```
+<br><br>
+```php
+<?php
+$CSSLoL = new CSSLoL();
+// Load CSS from a file
+$CSSLoL->load('https://localhost/tests/example.css');
+echo $CSS->get('text');
+```
+
+Will output: 
+```css
+body{color:#333}
+```
+<br><br>
 -  [x]  **get(*'array'* or *'string'*)** - to get the array of parsed css to change the data structury
+```php
+<?php
+$CSSLoL = new CSSLoL();
+$CSSLoL->load('tests/example.css');
+// Output as a string
+echo $CSS->get('text');
+```
+
+Will output: 
+```css
+body{color:#333}
+```
+<br><br>
+```php
+<?php
+$CSSLoL = new CSSLoL();
+$CSSLoL->load('tests/example.css');
+// Output as an array
+echo $CSS->get('array');
+```
+
+Will output: 
+```
+array(4) {
+  [0]=>
+  array(1) {
+    ["body"]=>
+    array(1) {
+      ["color"]=>
+      string(4) "#333"
+    }
+  }
+```
+<br><br>
 
 -  [x]  **save(*'name.css','path/css',true*)** - Save the final css to some final file (minified or not)
+```php
+<?php
+$CSSLoL = new CSSLoL();
+$CSSLoL->set('body{color:#333}');
+// Create a minified file
+if($CSS->save('tests/css/example-min.css')){
+  echo 'File created with success';
+} else {
+  echo 'Something wrong...';
+}
+```
 
+Will output an file minified in the indicated path.
+For more complexes paths, you could indicate the final name of the file and the destination using the second parameter.
+
+```php
+<?php
+$CSSLoL = new CSSLoL();
+$CSSLoL->set('body{color:#333}');
+// Create a minified file
+if($CSS->save('example.css','tests/css')){
+  echo 'File created with success';
+} else {
+  echo 'Something wrong...';
+}
+```
+
+The third parameter indicate if the final CSS will be minified or idented. The default value is true;
+```php
+<?php
+$CSSLoL = new CSSLoL();
+$CSSLoL->set('body{color:#333}');
+// Create an idented file
+if($CSS->save('example.css','tests/css',false)){
+  echo 'File with CSS idented created with success';
+} else {
+  echo 'Something went wrong with idented version...';
+}
+// Create a minified file
+if($CSS->save('example.min.css','tests/css',true)){
+  echo 'File with CSS minified created with success';
+} else {
+  echo 'Something went wrong with minified version...';
+}
+```
+
+<br><br>
 -  [x]  **set(*$array* or *$string*)** - to set the array of parsed css or in text, it will not append, it will replace the actual data
+```php
+<?php
+$CSSLoL = new CSSLoL();
+// Set an initial CSS from string
+$CSSLoL->set('body{color:#333}');
+echo $CSS->get('text');
+```
+
+Will output: 
+```css
+body{color:#333}
+```
+
+```php
+<?php
+$CSSLoL = new CSSLoL();
+// Set an initial CSS from array
+$rule = array( 
+    'body' => array('color' => '#333')
+);
+$CSSLoL->set($rule);
+echo $CSS->get('text');
+```
+
+Will output: 
+```css
+body{color:#333}
+```
 
 
+<br><br>
 
 ## Running the tests
 The tests are in the **/tests/** folder, just run them into your browser to see the results. They are not that good as a test but I think they do their job. 
