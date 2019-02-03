@@ -1,4 +1,4 @@
-<h1 align="center">:zap::zap::zap:  CSSLoL  :zap::zap::zap: </h1>
+<h1 align="center">CSSLoL</h1>
 <p align='center'>
 An standalone CSS optimizer in PHP.
  </p>
