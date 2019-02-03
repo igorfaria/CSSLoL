@@ -9,6 +9,8 @@ An standalone CSS optimizer in PHP.
   - [x] Colors rgb to hex (*rgb(255,255,255)* -> *#fff*)
   - [x] Abbreviation for hex (*#ffcc00* -> *#fc0*) 
   - [x] Add prefixes (*-webkit-*, *-moz-*, *-ms-* and *-o-*)
+  - [ ] Replace multiples related properties with the shorthanded version
+  - [ ] Remove duplicated properties with the same selector
 - [x] Support to media queries
 - [x] Support to animations (*-webkit-*)
 <br><br>
@@ -18,7 +20,7 @@ An standalone CSS optimizer in PHP.
 ## Configs
 - [x] **autoprefixer** *(default: true)*: add prefixes automatically if not yet defined to specified properties that you define 
 - [ ] **duplicated** *(default: false)*: Remove duplicated properties with the same selector in different parts of your css code.
-- [ ] **shorthand** *(default: false)*: Replace multiples properties related with the shorthanded version.
+- [ ] **shorthand** *(default: false)*: Replace multiples related properties with the shorthanded version.
   
 <br><br>
 ## Public Methods
