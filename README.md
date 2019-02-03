@@ -16,7 +16,10 @@ An standalone CSS optimizer in PHP.
 - [x] Yeah it does, by nature. Remove whitespaces, tabs, comments and those things.
 <br><br>
 ## Configs
-- [x] **Auto Prefixer**: add prefixes automatically if not yet defined to specified properties that you define 
+- [x] **autoprefixer***(default: true)*: add prefixes automatically if not yet defined to specified properties that you define 
+<br><br>- [ ] **duplicated***(default: false)*: Remove duplicated properties with the same selector in different parts of your css code.
+<br><br>- [ ] **shorthand***(default: false)*: Replace multiples properties related with the shorthanded version.
+  
 <br><br>
 ## Public Methods
 - [x] **append(*$array* or *$string*)** - To add some css rules to the end 
