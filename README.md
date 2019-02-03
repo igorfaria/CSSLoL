@@ -67,8 +67,8 @@ p{color:#222}body{color:#333}
 <br><br>
 -  [x]  **load('*string with local path or remote url*')** - To load some css file local or remote
 
-```php
 Loading a CSS file from a local path
+```php
 <?php
 $CSSLoL = new CSSLoL();
 // Load CSS from a file
