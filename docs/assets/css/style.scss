@@ -13,6 +13,7 @@ header {
   left: 0;
   right: 0;
   padding: 0;
+  top: 0;
 }
 .wrapper {
   width: 100%;
@@ -21,7 +22,24 @@ header {
 nav {
   top: 60px;
   text-align: center;
+  left: 0;
+  margin-left: 0;
+  width: 100%;
+  right: 0;
 }
 nav ul li {
   display: inline-block;
+}
+nav ul li a {
+    display: inline-block;
+    padding: 5px 10px;
+    border-bottom: 2px solid rgba(0,0,0,.2);
+    margin: 0 5px;
+    background: rgba(255, 255, 255, 0.73);
+    color: #6b6a6a;
+    font-size: 16px;
+    font-weight: 600;
+}
+nav ul li a:hover {
+  background: rgba(255, 255, 255, 1);
 }
