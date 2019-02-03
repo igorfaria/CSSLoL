@@ -35,10 +35,23 @@ Of course you can download the folder /tests/ if you want some examples to how u
 - [ ] **shorthand**  *(default: false)*: Replace multiples related properties with the shorthanded version.
 
 
-## Usage public methods
-
+## Usage
 -  [x]  **append(*$array* or *$string*)** - To add some css rules to the end
 
+```php
+<?php
+$CSSLoL = new CSSLoL();
+// Set initial CSS
+$CSSLoL->set('body{color:#333333;});
+// Add rule to the end of the CSS
+$CSSLoL->append(array('p' => array('color'=>'#222222')));
+echo $CSS->get('text');
+```
+
+Will output: 
+```css
+body{color:#333}p{color:#222}
+```
 -  [x]  **prepend(*$array* or *$string*)** - To add some css rules to the top
 
 -  [x]  **load('*string with local path or remote url*')** - To load some css file local or remote
