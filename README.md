@@ -223,7 +223,7 @@ $configs = array('autoprefixer' => true); // The default value is already true :
 $CSSLoL = new CSSLoL($configs);
 $CSSLoL->load('.example{transform: rotate(30deg);}');
 echo $CSSLoL->get('string',false);
-
+```
 Will output
 ```css
 .example {
