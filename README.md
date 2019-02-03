@@ -17,8 +17,8 @@ An standalone CSS optimizer in PHP.
 <br><br>
 ## Configs
 - [x] **autoprefixer***(default: true)*: add prefixes automatically if not yet defined to specified properties that you define 
-<br><br>- [ ] **duplicated***(default: false)*: Remove duplicated properties with the same selector in different parts of your css code.
-<br><br>- [ ] **shorthand***(default: false)*: Replace multiples properties related with the shorthanded version.
+- [ ] **duplicated***(default: false)*: Remove duplicated properties with the same selector in different parts of your css code.
+- [ ] **shorthand***(default: false)*: Replace multiples properties related with the shorthanded version.
   
 <br><br>
 ## Public Methods
