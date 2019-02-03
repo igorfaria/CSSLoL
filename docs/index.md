@@ -33,9 +33,11 @@ Of course you can download the folder /tests/ if you want some examples to how u
 <?php
 $CSSLoL = new CSSLoL();
 // Set initial CSS 
-$CSSLoL->set('body{color:#333333;});
+$CSSLoL->set('body{color:#333333;}');
 // Add rule to the end of the CSS
-$CSSLoL->append(array('p' => array('color'=>'#222222')));
+$CSSLoL->append(array(
+    'p' => array('color'=>'#222222'),
+));
 echo $CSS->get('string');
 ```
 
@@ -45,13 +47,16 @@ body{color:#333}p{color:#222}
 ```
 <br><br>
 -  [x]  **prepend(*$array* or *$string*)** - To add some css rules to the beginning
+
 ```php
 <?php
 $CSSLoL = new CSSLoL();
 // Set initial CSS 
-$CSSLoL->set('body{color:#333333;});
+$CSSLoL->set('body{color:#333333;}');
 // Add rule to the beginning of the CSS
-$CSSLoL->prepend(array('p' => array('color'=>'#222222')));
+$CSSLoL->prepend(array(
+    'p' => array('color'=>'#222222'),
+));
 echo $CSS->get('string');
 ```
 
@@ -61,6 +66,7 @@ p{color:#222}body{color:#333}
 ```
 <br><br>
 -  [x]  **load('*string with local path or remote url*')** - To load some css file local or remote
+
 ```php
 Loading a CSS file from a local path
 <?php
@@ -90,7 +96,8 @@ body{color:#333}
 ```
 <br><br>
 -  [x]  **get(*'array'* or *'string'*)** - to get the array of parsed css to change the data structury
-<br><br>
+
+
 The default value of the get() parameter is 'array', so the return will be an set of associatives arrays
 ```php
 <?php
@@ -129,6 +136,7 @@ body{color:#333}
 
 
 -  [x]  **save(*'name.css','path/css',true*)** - Save the final css to some final file (minified or not)
+
 ```php
 <?php
 $CSSLoL = new CSSLoL();
@@ -177,6 +185,7 @@ if($CSS->save('example.min.css','tests/css',true)){
 
 <br><br>
 -  [x]  **set(*$array* or *$string*)** - to set the array of parsed css or in text, it will not append, it will replace the actual data
+
 You can use the set() method with an string, this string could came from a webform or from loaded from a file for example 
 ```php
 <?php
@@ -215,13 +224,17 @@ body{color:#333}
 #### Configurations
 
 -  [x]  **autoprefixer**  *(default: true)*: add prefixes automatically if not yet defined to specified properties that you define
+
 ```php
 <?php
 // An array with configs
-$configs = array('autoprefixer' => true); // The default value is already true :D
-// Passed through constructor
+$configs = array(
+  // The default value is already true :D
+  'autoprefixer' => true,
+); 
+// Pass it through constructor
 $CSSLoL = new CSSLoL($configs);
-$CSSLoL->load('.example{transform: rotate(30deg);}');
+$CSSLoL->set('.example{transform: rotate(30deg);}');
 echo $CSSLoL->get('string',false);
 ```
 Will output
