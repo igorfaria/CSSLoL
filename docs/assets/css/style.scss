@@ -3,6 +3,30 @@
 
 @import "{{ site.theme }}";
 
+code {
+ font-family: monospace;
+ font-size: 16px;
+ text-shadow: 0px 1px 0px rgba(0,0,0,.2);
+}
+
+pre {
+    background: #151414;
+    border-radius: 0;
+    border: 0;
+}
+
+.highlight .na {
+      color: #349cc7;
+}
+
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #80b114;
+}
+
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+ color: #e26bca; 
+}
+
 #banner #logo {
   background-image: url('https://igorfaria.github.io/CSSLoL/assets/img/logo.png');
   background-repeat: no-repeat;
