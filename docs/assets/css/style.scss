@@ -74,8 +74,9 @@ header {
   max-width: 1600px;
 }
 section {
-  width: 100%; 
-  margin-top: 70px;
+  width: calc(100% - 40px); 
+  margin: 0 auto;
+  margin-top: 106px;
   background: #FFF;
   box-sizing: border-box;
   border: 0;
