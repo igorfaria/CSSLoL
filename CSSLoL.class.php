@@ -64,15 +64,19 @@ class CSSLoL {
     private function parse($css_text){
         // If it isn't an string...
         if(!is_string($css_text)) return false;
-        
+
+        // Remove comments before parsing
+        $css_text = $this->remove_comments($css_text);
+       
         $re_media = "/(@\w+[^{]+)\{([\s\S]+?})\s*}/";
         preg_match_all($re_media, $css_text, $matches_media);
-
+   
         $css_text_aux = $this->replaceMedias($re_media, $css_text);
         
         # Initial Source: https://stackoverflow.com/questions/33547792/php-css-from-string-to-array
-        $re_css = "/(.+)\{([^\}]*)\}/";
+        $re_css = "/(.+?)\s?\{\s?(.+?)\s?\}/";
         preg_match_all($re_css, $css_text_aux, $matches);
+       
 
         //Create an array to hold the returned values
         $return = array();
@@ -154,7 +158,7 @@ class CSSLoL {
         return preg_replace_callback($pattern, array($this, '_callbackMedias'), $text);
     }
     public function _callbackMedias($matches) {
-        return '@media-' . $this->_countMedias++ . '{}';
+        return '@media-' . $this->_countMedias++ . '{media:'.$this->_countMedias.'}';
     }
 
     private function optimize_value($value){
@@ -366,12 +370,26 @@ class CSSLoL {
     }
 
     private function minify($css){
-        $from=array('@\\s*/\\*.*\\*/\\s*@sU', '/\\s{2,}/');
-        $to=array('', ' ');
-        $css=preg_replace($from,$to,$css); 
+        // Remove empty selectors
+        $css = $this->remove_empty_selectors($css);
+        // Remove double spaces and break lines
+        $css = preg_replace('/\\s{2,}/',' ', $css);
+        // Remove space before characters :;,"\'{}()...  
         $css=preg_replace('@\s*([\:;,."\'{}()])\s*@',"$1",$css);  
         // Remove last semicolon
-        $css=preg_replace('@;}@','}',$css);
+        $css = preg_replace('@;}@','}',$css);
+        
         return $css;
     }
+
+    private function remove_comments($css){
+        return preg_replace('@\\s*/\\*.*\\*/\\s*@sU','', $css);
+    }
+
+    private function remove_empty_selectors($css){
+        return preg_replace('/(?<=(\}|;))[^\{\};]+\{\s*\}/', '', $css);
+    }
+
+    
+
 }
