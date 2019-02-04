@@ -3,7 +3,7 @@
 # CSSLoL Optimizer
 # https://github.com/igorfaria/CSSLoL
 
-class CSSLoL {
+class CSSLoL {	
     /*
         CSS parsed in an associative array $css = [['selector' => ['prop' => 'value']]];
     */
@@ -31,9 +31,11 @@ class CSSLoL {
                 '-webkit-' => array(
                     'animation', 'background-clip', 'box-reflect', 'filter', 'flex', 'box-flex',
                     'font-feature-settings','hyphens','mask-image','column-count', 'column-gap', 
-                    'column-rule','flow-from','flow-into','transform','appearance'
+                    'column-rule','flow-from','flow-into','transform','appearance',
+					'animation-duration', 'animation-duration', 'animation-name'
                 ), 
                 '-moz-' => array(
+					'animation-duration', 'animation-duration', 'animation-name', 'transform',
                     'font-feature-settings', 'hyphens','column-count','column-gap','column-rule','appearance'
                 ), 
                 '-ms-' => array(
@@ -129,9 +131,12 @@ class CSSLoL {
                         $name_webkit = preg_replace('/@keyframes/i','@-webkit-keyframes', $name);
                         // Append to the array
                         $return[][$name_webkit] = $rules_a;
+						
                     }
                 } 
             }
+			
+			
             //Add the name and its values to the array
              $return[][$name] = $rules_a;
         }
@@ -291,6 +296,7 @@ class CSSLoL {
         $css_text = "";
         $ident_space = "    ";
         $break_line = PHP_EOL;
+		
         // Iterates over the array with rules like a crazy
         foreach($this->css as $rule){
             foreach($rule as $selector1=>$properties1){
@@ -298,6 +304,8 @@ class CSSLoL {
 
               $css_text .= $selector1 . ' {' . $break_line;
 
+			
+							
               // Media Queries
               if(strpos($selector1,'@media') !== FALSE){
                 foreach($properties1 as $media_rule){
@@ -310,7 +318,8 @@ class CSSLoL {
                         }
                         $css_text .= $ident_space . '}' . $break_line;
                     }
-                }                
+                }  
+				
               } else {
                   // :D 
                   foreach($properties1 as $prop=>$value){
@@ -319,6 +328,8 @@ class CSSLoL {
                         foreach($value as $keyframes=>$props2){
                             if(!is_array($props2)) continue;
                             $css_text .=  $ident_space . $keyframes . ' {' . $break_line;
+							
+							
                             foreach($props2 as $selector2=>$properties2){
                                     if(is_array($properties2)){
                                         $css_text .= $ident_space . $ident_space . $selector2 . ' {' . $break_line;
@@ -335,12 +346,18 @@ class CSSLoL {
                       } else {
                           // Normal css :)
                           $css_text .= $ident_space . $prop . ': ' . $value . ';' . $break_line; 
-                      }
+			          }
                   }
+				  
               }
 
               $css_text .= '}' . $break_line;
             }
+			
+			// Keyframes...
+			if(strpos($selector1, '@-web') !== FALSE){  
+				$css_text .= $ident_space . '}' . $break_line;
+			 }
         }
 
         if($minify) $css_text = $this->minify($css_text);
