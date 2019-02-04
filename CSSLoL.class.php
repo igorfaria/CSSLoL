@@ -121,14 +121,14 @@ class CSSLoL {
                     // CSS string related to the media
                     $media_query_css = $matches_media[2][$media_query[1]];
                     // Parse the CSS string
-                    $rules_m = $this->parse($media_query_css); 
+                    $rules_a = $this->parse($media_query_css); 
                     // If autoprefixer is true, there is the -webkit- prefix and is @keyframes
                     if($this->config['autoprefixer'] AND isset($this->config['autoprefixer']['prefixes']['-webkit-']) 
                        AND strpos($name,'@keyframes') !== false){
                         // Add the webkit prefix to @keyframes
                         $name_webkit = preg_replace('/@keyframes/i','@-webkit-keyframes', $name);
                         // Append to the array
-                        $return[][$name_webkit] = $rules_m;
+                        $return[][$name_webkit] = $rules_a;
                     }
                 } 
             }
