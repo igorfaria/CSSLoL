@@ -3,6 +3,16 @@
 
 @import "{{ site.theme }}";
 
+body {
+  background: #ccc;
+}
+
+footer {
+ position: static;
+ margin: 0;
+ text-align: center;
+ width: 100%;
+}
 
 li input[type="checkbox"] {
  margin-right: 6px;
