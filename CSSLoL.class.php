@@ -67,6 +67,9 @@ class CSSLoL {
 
         // Remove comments before parsing
         $css_text = $this->remove_comments($css_text);
+
+        // Remove empty selectors
+        $css_text = $this->remove_empty_selectors($css_text);
        
         $re_media = "/(@\w+[^{]+)\{([\s\S]+?})\s*}/";
         preg_match_all($re_media, $css_text, $matches_media);
@@ -74,9 +77,10 @@ class CSSLoL {
         $css_text_aux = $this->replaceMedias($re_media, $css_text);
         
         # Initial Source: https://stackoverflow.com/questions/33547792/php-css-from-string-to-array
-        $re_css = "/(.+?)\s?\{\s?(.+?)\s?\}/";
+        //$re_css = "/\s*([^{]+)\s*\{\s*([^}]*?)\s*}/";
+        $re_css = "/([^{]+)\s*\{\s*([^}]+)\s*}/";
         preg_match_all($re_css, $css_text_aux, $matches);
-       
+        
 
         //Create an array to hold the returned values
         $return = array();
@@ -370,8 +374,6 @@ class CSSLoL {
     }
 
     private function minify($css){
-        // Remove empty selectors
-        $css = $this->remove_empty_selectors($css);
         // Remove double spaces and break lines
         $css = preg_replace('/\\s{2,}/',' ', $css);
         // Remove space before characters :;,"\'{}()...  
