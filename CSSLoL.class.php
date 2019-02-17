@@ -201,7 +201,7 @@ class CSSLoL {
     }
 
     private function compress_hex($original){
-        if (strlen($original) == 6 && $original[1] == $original[2]
+        if (strlen($original) == 7 && $original[1] == $original[2]
         && $original[3] == $original[4]  && $original[5] == $original[6]) {
           return "#" . $original[1] . $original[3] . $original[5];
         } else return $original;
